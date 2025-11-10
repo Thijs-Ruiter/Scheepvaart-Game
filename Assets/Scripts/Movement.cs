@@ -1,18 +1,23 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    enum TroopState
+    public InputAction leftClickAction;
+    private Camera cam;
+    public enum TroopState
     {
         None, Selected
     }
-    private TroopState state;
+    public TroopState state;
 
     private Vector2 target;
     public float speed = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cam = Camera.main;
+        leftClickAction = InputSystem.actions.FindAction("Click");
         target = transform.position;
     }
 
@@ -23,30 +28,27 @@ public class Movement : MonoBehaviour
         switch (state)
         {
             case TroopState.None:
+                if (leftClickAction.WasPressedThisFrame())
+                {
+                    UnityEngine.Debug.Log("Mouse Pressed");
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        if (hit.collider.gameObject == gameObject)
+                        {
+                            state = TroopState.Selected;
+                        }
+                    }
+                }
                 transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * speed);
                 break;
             case TroopState.Selected:
-                if (e.button == 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    target = e.mousePosition;
+                    target = Input.mousePosition;
                     state = TroopState.None;
                 }
                 break;
         }
-
-    }
-
-    private void OnMouseDown()
-    {
-        UnityEngine.Debug.Log("I got Clicked");
-        if (state != TroopState.Selected)
-        {
-            state = TroopState.Selected;
-        }
-    }
-
-    private void OnMouseOver()
-    {
-        
     }
 }
