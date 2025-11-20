@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 2208f500d142ac842abeba2c294108d8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3097274298177626182
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_0
+  - first:
+      213: 7816632676653566447
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_1
+  - first:
+      213: 5341005065952896169
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_2
+  - first:
+      213: -6042508239287365955
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_3
+  - first:
+      213: -5640843287081758737
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_4
+  - first:
+      213: 7904568140810395411
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_5
+  - first:
+      213: -8518478008586182143
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_6
+  - first:
+      213: 209140224819458135
+    second: world-map-outline-isolated-on-transparent-background-free-png-452713682_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 45, y: 56, z: 150, w: 46}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_0
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 463
+        width: 484
+        height: 402
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abfdc259f654405d0800000000000000
+      internalID: -3097274298177626182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_1
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 780
+        width: 229
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe985af41024a7c60800000000000000
+      internalID: 7816632676653566447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_2
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 354
+        width: 848
+        height: 523
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a42fa34fcf0f1a40800000000000000
+      internalID: 5341005065952896169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_3
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 75
+        width: 263
+        height: 424
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbec7ec55c2b42ca0800000000000000
+      internalID: -6042508239287365955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_4
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 198
+        width: 380
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef48d7bae2b7b1b0800000000000000
+      internalID: -5640843287081758737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_5
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 168
+        width: 229
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f9fd708daa2bd60800000000000000
+      internalID: 7904568140810395411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_6
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 345
+        width: 119
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1026e3f426948c980800000000000000
+      internalID: -8518478008586182143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world-map-outline-isolated-on-transparent-background-free-png-452713682_7
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 118
+        width: 105
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750fb982de307e200800000000000000
+      internalID: 209140224819458135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_0: -3097274298177626182
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_1: 7816632676653566447
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_2: 5341005065952896169
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_3: -6042508239287365955
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_4: -5640843287081758737
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_5: 7904568140810395411
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_6: -8518478008586182143
+      world-map-outline-isolated-on-transparent-background-free-png-452713682_7: 209140224819458135
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

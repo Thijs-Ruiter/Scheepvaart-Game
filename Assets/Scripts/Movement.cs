@@ -1,10 +1,12 @@
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
     public InputAction leftClickAction;
-    private Camera cam;
+    public Camera cam;
     public enum TroopState
     {
         None, Selected
@@ -22,7 +24,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Event e = Event.current;
         switch (state)
@@ -30,10 +32,12 @@ public class Movement : MonoBehaviour
             case TroopState.None:
                 if (leftClickAction.WasPressedThisFrame())
                 {
-                    UnityEngine.Debug.Log("Mouse Pressed");
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    RaycastHit hit;
+                    Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                    Debug.DrawRay(ray.origin, ray.direction * 15);
+                    if (Physics.Raycast(ray, out hit, 15))
                     {
+                        UnityEngine.Debug.Log(hit.collider.name);
                         if (hit.collider.gameObject == gameObject)
                         {
                             state = TroopState.Selected;
@@ -43,9 +47,9 @@ public class Movement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * speed);
                 break;
             case TroopState.Selected:
-                if (Input.GetMouseButtonDown(0))
+                if (leftClickAction.WasPressedThisFrame())
                 {
-                    target = Input.mousePosition;
+                    target = Mouse.current.position.ReadValue();
                     state = TroopState.None;
                 }
                 break;
