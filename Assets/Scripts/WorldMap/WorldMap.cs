@@ -83,6 +83,13 @@ public class WorldMap : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         return name.Replace("_"," ");
     }
 
+    public Vector2 GetCountryPosition(Country country) 
+    {
+        Vector2 pos = transform.GetChild((int)country).position;
+        return pos;
+    }
+
+
     ///<summary>
     /// Make a country non interactable
     ///</summary>
