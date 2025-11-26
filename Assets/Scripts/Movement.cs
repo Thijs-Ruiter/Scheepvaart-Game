@@ -1,58 +1,70 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public InputAction leftClickAction;
-    public Camera cam;
-    public enum TroopState
-    {
-        None, Selected
-    }
-    public TroopState state;
-
+    public Vector2[] nodes;
     private Vector2 target;
+    public Vector2 endPoint;
+
+    private int targetIndex;
+    private int endPointIndex;
     public float speed = 5;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        cam = Camera.main;
-        leftClickAction = InputSystem.actions.FindAction("Click");
-        target = transform.position;
+        target = ClosestNode();
+        targetIndex = Array.BinarySearch(nodes, target);
+        endPointIndex = Array.BinarySearch(nodes, endPoint);
+        if (targetIndex < endPointIndex)
+        {
+            nodes.Reverse();
+        }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Event e = Event.current;
-        switch (state)
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, target) < 0.01f)
         {
-            case TroopState.None:
-                if (leftClickAction.WasPressedThisFrame())
-                {
-                    RaycastHit hit;
-                    Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-                    Debug.DrawRay(ray.origin, ray.direction * 15);
-                    if (Physics.Raycast(ray, out hit, 15))
-                    {
-                        UnityEngine.Debug.Log(hit.collider.name);
-                        if (hit.collider.gameObject == gameObject)
-                        {
-                            state = TroopState.Selected;
-                        }
-                    }
-                }
-                transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * speed);
-                break;
-            case TroopState.Selected:
-                if (leftClickAction.WasPressedThisFrame())
-                {
-                    target = Mouse.current.position.ReadValue();
-                    state = TroopState.None;
-                }
-                break;
+            if (targetIndex == endPointIndex)
+            {
+                Debug.Log("End Point Reached");
+                Destroy(gameObject);
+            }
+            targetIndex += 1;
+            target = nodes[targetIndex];
         }
+    }
+
+    Vector2 ClosestNode()
+    {
+        Vector2 closestNode = nodes[0];
+        foreach (Vector2 node in nodes)
+        {
+            if (Vector2.Distance(transform.position, node) < Vector2.Distance(transform.position, closestNode))
+            {
+                closestNode = node;
+            }
+        }
+        return closestNode;
+    }
+
+    Vector2 ClosestNode(Vector2 pos)
+    {
+        Vector2 closestNode = nodes[0];
+        foreach (Vector2 node in nodes)
+        {
+            if (Vector2.Distance(pos, node) < Vector2.Distance(pos, closestNode))
+            {
+                closestNode = node;
+            }
+        }
+        return closestNode;
     }
 }
