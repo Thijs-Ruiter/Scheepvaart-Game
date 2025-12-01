@@ -7,28 +7,28 @@ public class RouterScript : MonoBehaviour
 {
     WorldMap worldMap;
     Camera cam;
-    Vector2[] coastlineNodes;
+    public Vector2[] coastlineNodes = new Vector2[5]
+    {
+        new Vector2(375, 304),
+        new Vector2(367, 301),
+        new Vector2(373.5f, 293),
+        new Vector2(371, 287),
+        new Vector2(357.5f, 287.5f)
+    };
     public GameObject shipPrefab;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void GenerateNodes()
-    {
-        AddNode(375, 304);
-        AddNode(367, 301);
-        AddNode(373.5f, 293);
-        AddNode(371, 287);
-        AddNode(357.5f, 287.5f);
-    }
+    public GameObject debugCircle;
 
-    void AddNode(float x, float y)
-    {
-        coastlineNodes.Append(new Vector2(x, y));
-    }
+    public bool nodeVisualisation = true;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
     {
         cam = Camera.main;
-        worldMap = GetComponent<WorldMap>();
-        GenerateNodes();
+        worldMap = GameObject.Find("WorldMap").GetComponent<WorldMap>();
+        if (nodeVisualisation)
+        {
+            EnableNodeVisualisation();
+        }
     }
 
     // Update is called once per frame
@@ -37,8 +37,16 @@ public class RouterScript : MonoBehaviour
         Event e = Event.current;
         if (e.isKey && e.keyCode == KeyCode.A)
         {
-            GameObject ship = Instantiate(shipPrefab, new Vector3(372, 305, 0), Quaternion.identity);
-            ship.GetComponent<Movement>().nodes = coastlineNodes;
+            GameObject ship = Instantiate(shipPrefab, transform.position, Quaternion.identity, transform);
+            ship.transform.localPosition = new Vector3(372, 305, 0);
+        }
+    }
+
+    void EnableNodeVisualisation()
+    {
+        foreach(Vector2 pos in coastlineNodes)
+        {
+            Instantiate(debugCircle, pos, Quaternion.identity);
         }
     }
 }

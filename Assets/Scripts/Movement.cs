@@ -8,20 +8,23 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    private RouterScript routerScript;
+
     public Vector2[] nodes;
-    private Vector2 target;
     public Vector2 endPoint;
 
     private int targetIndex;
     private int endPointIndex;
-    public float speed = 5;
+    public float speed = 1;
 
     void Start()
     {
-        target = ClosestNode();
-        targetIndex = Array.BinarySearch(nodes, target);
-        endPointIndex = Array.BinarySearch(nodes, endPoint);
-        if (targetIndex < endPointIndex)
+        routerScript = GetComponentInParent<RouterScript>();
+        nodes = routerScript.coastlineNodes;
+        targetIndex = GetClosestNodeIndex(transform.localPosition);
+        endPointIndex = GetClosestNodeIndex(endPoint);
+        Debug.Log("TargetIndex: " + targetIndex + ". EndpointIndex: " + endPointIndex);
+        if (targetIndex > endPointIndex)
         {
             nodes.Reverse();
         }
@@ -29,27 +32,29 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, target) < 0.01f)
+        transform.localPosition = Vector2.MoveTowards(transform.localPosition, nodes[targetIndex], speed * Time.deltaTime);
+        if (Vector2.Distance(transform.localPosition, nodes[targetIndex]) < 0.01f)
         {
             if (targetIndex == endPointIndex)
             {
                 Debug.Log("End Point Reached");
                 Destroy(gameObject);
             }
-            targetIndex += 1;
-            target = nodes[targetIndex];
+            else
+            {
+                targetIndex += 1;
+            }
         }
     }
 
     Vector2 ClosestNode()
     {
         Vector2 closestNode = nodes[0];
-        foreach (Vector2 node in nodes)
+        for (int i = 0; i < nodes.Length; i++)
         {
-            if (Vector2.Distance(transform.position, node) < Vector2.Distance(transform.position, closestNode))
+            if (Vector2.Distance(transform.localPosition, nodes[i]) < Vector2.Distance(transform.localPosition, closestNode))
             {
-                closestNode = node;
+                closestNode = nodes[i];
             }
         }
         return closestNode;
@@ -66,5 +71,18 @@ public class Movement : MonoBehaviour
             }
         }
         return closestNode;
+    }
+
+    int GetClosestNodeIndex(Vector2 pos)
+    {
+        int closestNodeIndex = 0;
+        for (int i = 0; i < nodes.Length; i++)
+        {
+            if (Vector2.Distance(pos, nodes[i]) < Vector2.Distance(pos, nodes[closestNodeIndex]))
+            {
+                closestNodeIndex = i;
+            }
+        }
+        return closestNodeIndex;
     }
 }

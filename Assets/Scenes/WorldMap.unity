@@ -908,7 +908,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466436807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -931,6 +931,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cad070f61dc38045bef55c9b0a776e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouterScript
+  coastlineNodes:
+  - {x: 375, y: 304}
+  - {x: 367, y: 301}
+  - {x: 373.5, y: 293}
+  - {x: 371, y: 287}
+  - {x: 357.5, y: 287.5}
   shipPrefab: {fileID: 4515508536275492321, guid: 8f5a6f03c331c724187cbfd93393f657, type: 3}
 --- !u!1 &2108691476
 GameObject:
@@ -1566,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371168821428890950, guid: 6abfae72e26efeb409862a392018f629, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 371168821428890950, guid: 6abfae72e26efeb409862a392018f629, type: 3}
       propertyPath: m_LocalRotation.w
