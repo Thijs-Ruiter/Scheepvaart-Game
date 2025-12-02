@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
 
     private int targetIndex;
     private int endPointIndex;
+    private int direction = 1;
     public float speed = 1;
 
     void Start()
@@ -26,7 +27,7 @@ public class Movement : MonoBehaviour
         Debug.Log("TargetIndex: " + targetIndex + ". EndpointIndex: " + endPointIndex);
         if (targetIndex > endPointIndex)
         {
-            nodes.Reverse();
+            direction = -1;
         }
     }
 
@@ -42,7 +43,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                targetIndex += 1;
+                targetIndex += direction;
             }
         }
     }

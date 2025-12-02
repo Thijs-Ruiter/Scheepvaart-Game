@@ -89,6 +89,11 @@ public class WorldMap : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         return pos;
     }
 
+    public Vector2 GetCountryLocalPosition(Country country)
+    {
+        Vector2 pos = transform.GetChild((int)country).localPosition;
+        return pos;
+    }
 
     ///<summary>
     /// Make a country non interactable
