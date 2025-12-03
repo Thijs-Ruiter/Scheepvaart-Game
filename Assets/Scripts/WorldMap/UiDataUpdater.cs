@@ -6,6 +6,7 @@ using System;
 public class UiDataUpdater : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HighlightText,selectText;
+    [SerializeField] GameObject countryMenu;
     [SerializeField] WorldMap map;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,14 @@ public class UiDataUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (map.selectedCountry != Country.Empty)
+        {
+            ChangeCountryMenuState(true);
+        } 
+        else
+        {
+            ChangeCountryMenuState(false);
+        }
     }
     void ChangeHighlightText(object sender,EventArgs e)
     {
@@ -26,7 +34,10 @@ public class UiDataUpdater : MonoBehaviour
     }
     void ChangeSelectText(object sender,EventArgs e)
     {
-        
         selectText.text = map.GetCountryName(map.selectedCountry);
+    }
+    void ChangeCountryMenuState(bool state)
+    {
+        countryMenu.SetActive(state);
     }
 }
