@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 
 public class RouterScript : MonoBehaviour
 {
@@ -53,6 +54,9 @@ public class RouterScript : MonoBehaviour
         new Vector2(628, 149),
         new Vector2(655, 138)
     };
+
+    public List<Country> coastCountries = new List<Country>();
+
     public GameObject shipPrefab;
     public GameObject debugCircle;
 
@@ -133,5 +137,16 @@ public class RouterScript : MonoBehaviour
         lastSelectedCountry = worldMap.selectedCountry;
         worldMap.Clear();
         gameState = GameState.TargetCountrySelection;
+    }
+
+    private void CoastCountries()
+    {
+        coastCountries.Add(Country.Netherlands);
+        coastCountries.Add(Country.United_Kingdom);
+        coastCountries.Add(Country.France);
+        coastCountries.Add(Country.Spain);
+        coastCountries.Add(Country.Portugal);
+        coastCountries.Add(Country.Morocco);
+        coastCountries.Add(Country.Western_Sahara);
     }
 }
