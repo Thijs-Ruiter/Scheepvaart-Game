@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     public bool touchedGround = false;
     public float speed = 5.0f;
     public float jumpForce = 5.0f;
+    public SidescrollerController sidescrollerController;
+
     public enum State 
     {
-        Grounded, Aired
+        Running, Paused
     }
 
-    public State playerState = State.Grounded;
+    public State playerState = State.Paused;
 
     private void Awake()
     {
@@ -37,25 +39,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float jump = playerControls.Player.Jump.ReadValue<float>();
-        float horizontal = playerControls.Player.Move.ReadValue<Vector2>().x;
-        transform.position = transform.position + new Vector3(horizontal * speed * Time.deltaTime, 0, 0);
         switch (playerState)
         {
-            case State.Grounded:
-                if (jump > 0)
+            case State.Running:
+                Running();
+                break;
+            case State.Paused:
+                if (sidescrollerController.gameState == SidescrollerController.GameState.Running)
                 {
-                    rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                    playerState = State.Aired;
+                    playerState = State.Running;
                 }
                 break;
-            case State.Aired:
-                if (touchedGround)
-                {
-                    touchedGround = false;
-                    playerState = State.Grounded;
-                }
-                break;
+        }
+    }
+
+    void Running()
+    {
+        float jump = playerControls.Player.Jump.ReadValue<float>();
+        //float crouch = playerControls.Player.Crouch.ReadValue<float>();
+        //float horizontal = playerControls.Player.Move.ReadValue<Vector2>().x;
+        transform.position = transform.position + new Vector3(speed * Time.deltaTime, 0, 0);
+        if (jump > 0 && touchedGround)
+        {
+            touchedGround = false;
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -65,6 +72,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             touchedGround = true;
+        }
+        else if (collision.gameObject.tag == "Obstacle")
+        {
+            sidescrollerController.gameState = SidescrollerController.GameState.Lost;
+            sidescrollerController.OnLose();
+            playerState = State.Paused;
         }
     }
 }
