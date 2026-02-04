@@ -4,6 +4,17 @@ using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
+
+    // GameStages:
+    // 0 - 99 = Animations
+    // 0 = Starting Animation
+    // 1 = Boarding Animation
+    // 2 = Alternate Boarding Animation
+    // 11 = Sleep Animation
+    // 12 = Talk Animation
+    // 13 = Music Animation
+    // 100 - 199 = Decisions
+    // 200 - 299 = Minigames
     public enum GameState
     {
         Start, Animation, Decision, Minigame
@@ -61,13 +72,6 @@ public class GameManager : MonoBehaviour
     {
         gameStage += value;
     }
-
-    // GameStages:
-    // Before Starting = -1
-    // StartingAnimation = 0
-    // EscapeMinigame = 1
-    // Boarding = 2
-    // 
 
     public void OnButton(int buttonNumber)
     {
