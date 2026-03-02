@@ -17,11 +17,12 @@ public class GameManager : MonoBehaviour
     // 200 - 299 = Minigames
     public enum GameState
     {
-        Start, Animation, Decision, Minigame
+        Pre0, A00, C00, A01, A02, C10
+        // Naming Scheme, first number is choice stage, second number determines which stage within the choice stage
     }
-    public GameState currentGameState = GameState.Start;
-    public int gameStage = -1;
+    public GameState currentGameState = GameState.Pre0;
     private bool decisionMade = false;
+    private int buttonPressed;
     public AnimationPlayer animationPlayer;
     public GameObject decisionUI;
 
@@ -36,76 +37,72 @@ public class GameManager : MonoBehaviour
     {
         switch (currentGameState) 
         {
-            case GameState.Start:
-                if (gameStage == 0)
+            case GameState.Pre0: // Menu Screen
+                if (buttonPressed == 1)
                 {
-                    OnAnimation();
+                    OnChangeState(GameState.A00);
                 }
                 break;
-            case GameState.Animation:
+            case GameState.A00: // Leadup Animation
                 if (animationPlayer.vp.time == animationPlayer.vp.length)
                 {
-                    OnDecision();
+                    OnChangeState(GameState.C00);
                 }
                 break;
-            case GameState.Decision:
-                if (decisionMade)
+            case GameState.C00: // First decision
+                if (decisionMade && buttonPressed != 0)
                 {
                     decisionMade = false;
-                    if (gameStage == 1)
+                    if (buttonPressed == 1)
                     {
-                        OnMinigame();
+                        OnChangeState(GameState.A01);
+                    } 
+                    else if (buttonPressed == 2)
+                    {
+                        OnChangeState(GameState.A02);
                     } 
                     else
                     {
-                        OnAnimation();
+                        Debug.Log("Invalid button pressed");
                     }
                 }
                 break;
-            case GameState.Minigame:
-
+            case GameState.A01: // Transfer onto the ship Animation
+                break;
+            case GameState.A02: // Minigame start Animation
+                break;
+            case GameState.C10:
                 break;
         }
     }
 
-    public void IncreaseGameStage(int value)
+    public void OnChangeState(GameState newState)
     {
-        gameStage += value;
+        currentGameState = newState;
+        switch (currentGameState)
+        {
+            case GameState.Pre0:
+                break;
+            case GameState.A00:
+                animationPlayer.PlayAnimation(0);
+                break;
+            case GameState.C00:
+                decisionUI.SetActive(true);
+                break;
+            case GameState.A01:
+                animationPlayer.PlayAnimation(1);
+                break;
+            case GameState.A02:
+                animationPlayer.PlayAnimation(2);
+                break;
+            case GameState.C10:
+                break;
+        }
     }
 
     public void OnButton(int buttonNumber)
     {
         decisionMade = true;
-        switch (buttonNumber)
-        {
-            case 0:
-                IncreaseGameStage(1);
-                break;
-            case 1:
-                IncreaseGameStage(2);
-                break;
-            case 2:
-                IncreaseGameStage(3);
-                break;
-            default:
-                break;
-        }
-    }
-
-    void OnAnimation()
-    {
-        currentGameState = GameState.Animation;
-        animationPlayer.PlayAnimation(gameStage);
-    }
-
-    void OnDecision()
-    {
-        currentGameState = GameState.Decision;
-        decisionUI.SetActive(true);
-    }
-
-    void OnMinigame()
-    {
-        currentGameState = GameState.Minigame;
+        buttonPressed = buttonNumber;
     }
 }
